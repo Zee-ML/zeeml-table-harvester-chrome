@@ -30,8 +30,12 @@
 
   function cleanCellText(node) {
     if (!node) return '';
+    // Fast path: 99%+ of cells have no embedded script/style/svg/nested-table
+    if (!node.querySelector || !node.querySelector('script, style, noscript, svg, table, [aria-hidden="true"]')) {
+      return String(node.textContent || '').replace(/\s+/g, ' ').trim();
+    }
     const clone = node.cloneNode(true);
-    const junk = clone.querySelectorAll ? clone.querySelectorAll('script, style, noscript, svg, [aria-hidden="true"]') : [];
+    const junk = clone.querySelectorAll('script, style, noscript, svg, table, [aria-hidden="true"]');
     for (let i = 0; i < junk.length; i++) junk[i].remove();
     return String(clone.textContent || '').replace(/\s+/g, ' ').trim();
   }
