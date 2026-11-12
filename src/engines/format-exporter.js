@@ -75,17 +75,27 @@
     const typed = options.typed !== false;
 
     if (mode === 'columnar') {
-      const cols = {};
+      const cols = Object.create(null);
       analyzed.columns.forEach((col, cIdx) => {
-        cols[col.name] = analyzed.rows.map(r => (typed ? coerceValueBySchema(r[cIdx], col) : r[cIdx]));
+        Object.defineProperty(cols, col.name, {
+          value: analyzed.rows.map(r => (typed ? coerceValueBySchema(r[cIdx], col) : r[cIdx])),
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
       });
       return JSON.stringify(cols, null, 2);
     }
 
     const records = analyzed.rows.map(row => {
-      const obj = {};
+      const obj = Object.create(null);
       analyzed.columns.forEach((col, cIdx) => {
-        obj[col.name] = typed ? coerceValueBySchema(row[cIdx], col) : row[cIdx];
+        Object.defineProperty(obj, col.name, {
+          value: typed ? coerceValueBySchema(row[cIdx], col) : row[cIdx],
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
       });
       return obj;
     });
