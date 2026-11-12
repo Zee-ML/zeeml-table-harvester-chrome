@@ -119,10 +119,12 @@
   function analyzeDatasetSchema(rawHeaders, rows, options = {}) {
     const cleanNumeric = Boolean(options.cleanNumeric);
     const rowCount = Array.isArray(rows) ? rows.length : 0;
-    const colCount = Math.max(
-      Array.isArray(rawHeaders) ? rawHeaders.length : 0,
-      rowCount > 0 ? Math.max(...rows.map(r => (Array.isArray(r) ? r.length : 0))) : 0
-    );
+    let maxRowCols = Array.isArray(rawHeaders) ? rawHeaders.length : 0;
+    for (let r = 0; r < rowCount; r++) {
+      const len = Array.isArray(rows[r]) ? rows[r].length : 0;
+      if (len > maxRowCols) maxRowCols = len;
+    }
+    const colCount = maxRowCols;
 
     const { headers, sqlIdentifiers } = deduplicateHeaders(rawHeaders, colCount);
     const columnSchemas = [];
