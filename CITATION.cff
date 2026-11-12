@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "ZeeML Smart Table, Grid & JSON-to-CSV Studio"
+message: "If you use this software in your data workflows or research, please cite it using the metadata below."
+type: software
+authors:
+  - name: "ZeeML Engineering"
+    website: "https://zeeml.com"
+version: "1.0.0"
+date-released: "2026-11-12"
+license: MIT
+url: "https://zeeml.com/json-to-csv"
+repository-code: "https://github.com/Zee-ML/zeeml-table-harvester-chrome"
+keywords:
+  - json-to-csv
+  - table-extractor
+  - rfc-4180
+  - schema-inference
+  - data-science
+  - chrome-extension
