@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZeeML Smart Table, Grid &amp; JSON-to-CSV Studio</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body class="zml-ext-body">
+  <header class="zml-ext-header">
+    <div class="zml-brand-row">
+      <div class="zml-logo-badge" aria-hidden="true">Z</div>
+      <div>
+        <h1 class="zml-ext-title">ZeeML Table &amp; JSON Studio</h1>
+        <p class="zml-ext-subtitle" id="zml-scan-summary">Scanning active page DOM, CSS Grids &amp; JSON...</p>
+      </div>
+    </div>
+    <a class="zml-web-pill" href="https://zeeml.com/json-to-csv" target="_blank" rel="noopener noreferrer" title="Open ZeeML JSON to CSV Workbench">
+      zeeml.com ↗
+    </a>
+  </header>
+
+  <section class="zml-toolbar" aria-label="Dataset selector and cleaning controls">
+    <div class="zml-select-row">
+      <label class="zml-sr-only" for="zml-dataset-select">Detected Dataset</label>
+      <select id="zml-dataset-select" class="zml-select"></select>
+      <button id="zml-rescan-btn" class="zml-icon-btn" type="button" title="Re-scan active page">↻</button>
+    </div>
+    <div class="zml-toggles-row">
+      <label class="zml-check-label">
+        <input type="checkbox" id="zml-toggle-clean-num" checked />
+        <span>Clean Currency / %</span>
+      </label>
+      <label class="zml-check-label">
+        <input type="checkbox" id="zml-toggle-links" />
+        <span>Extract Link URLs</span>
+      </label>
+      <label class="zml-check-label">
+        <input type="checkbox" id="zml-toggle-outliers-only" />
+        <span id="zml-outlier-filter-label">Outliers Only (0)</span>
+      </label>
+    </div>
+  </section>
+
+  <div class="zml-tablist" role="tablist" aria-label="Studio workspace views">
+    <button class="zml-tab is-active" role="tab" aria-selected="true" data-tab="grid" type="button">
+      Smart Grid
+    </button>
+    <button class="zml-tab" role="tab" aria-selected="false" data-tab="telemetry" type="button">
+      Telemetry &amp; Stats
+    </button>
+    <button class="zml-tab" role="tab" aria-selected="false" data-tab="export" type="button">
+      Export Studio (5)
+    </button>
+  </div>
+
+  <main class="zml-main">
+    <!-- Tab 1: Windowed Smart Grid Preview -->
+    <section id="zml-panel-grid" class="zml-panel is-active" role="tabpanel">
+      <div class="zml-grid-meta-bar">
+        <span id="zml-grid-dimensions">0 rows × 0 cols</span>
+        <div class="zml-pager">
+          <button id="zml-prev-page" class="zml-pager-btn" type="button" disabled>‹ Prev</button>
+          <span id="zml-page-indicator">Page 1 / 1</span>
+          <button id="zml-next-page" class="zml-pager-btn" type="button" disabled>Next ›</button>
+        </div>
+      </div>
+      <div class="zml-table-scroll" id="zml-table-container">
+        <table class="zml-data-table" id="zml-preview-table">
+          <thead id="zml-preview-thead"></thead>
+          <tbody id="zml-preview-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tab 2: Schema Inference & Statistical Telemetry -->
+    <section id="zml-panel-telemetry" class="zml-panel" role="tabpanel">
+      <div id="zml-telemetry-list" class="zml-telemetry-list"></div>
+    </section>
+
+    <!-- Tab 3: 5-Format Export Studio -->
+    <section id="zml-panel-export" class="zml-panel" role="tabpanel">
+      <div class="zml-format-bar">
+        <button class="zml-fmt-btn is-selected" data-format="csv" type="button">RFC-4180 CSV</button>
+        <button class="zml-fmt-btn" data-format="json" type="button">JSON</button>
+        <button class="zml-fmt-btn" data-format="markdown" type="button">Markdown</button>
+        <button class="zml-fmt-btn" data-format="sql" type="button">SQL DDL</button>
+        <button class="zml-fmt-btn" data-format="ai-prompt" type="button">AI Prompt Pack</button>
+      </div>
+      <textarea id="zml-export-preview" class="zml-export-textarea" readonly spellcheck="false" aria-label="Exported payload preview"></textarea>
+    </section>
+  </main>
+
+  <footer class="zml-ext-footer">
+    <div class="zml-primary-actions">
+      <button id="zml-quick-copy-csv" class="zml-btn zml-btn-primary" type="button">Copy Clean CSV</button>
+      <button id="zml-download-active" class="zml-btn zml-btn-secondary" type="button">Download File</button>
+      <button id="zml-copy-ai-pack" class="zml-btn zml-btn-accent" type="button">Copy AI Pack</button>
+    </div>
+    <div class="zml-deep-links">
+      <a href="https://zeeml.com/json-to-csv" target="_blank" rel="noopener noreferrer">JSON ↔ CSV Workbench</a>
+      <span>•</span>
+      <a href="https://zeeml.com/percentage-calculator" target="_blank" rel="noopener noreferrer">% Delta Calculator</a>
+      <span>•</span>
+      <a href="https://zeeml.com/word-counter" target="_blank" rel="noopener noreferrer">Lexical Counter</a>
+      <span>•</span>
+      <a href="https://zeeml.com/tools" target="_blank" rel="noopener noreferrer">All ZeeML Tools</a>
+    </div>
+  </footer>
+
+  <script src="../engines/schema-intelligence.js"></script>
+  <script src="../engines/format-exporter.js"></script>
+  <script src="../engines/dom-harvester.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
