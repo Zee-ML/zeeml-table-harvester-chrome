@@ -1,5 +1,6 @@
-# ZeeML Smart Table, Grid & JSON-to-CSV Studio (Chrome Extension — Manifest V3)
+# ZeeML Smart Table, Grid & JSON-to-CSV Studio (Chrome Extension - Manifest V3)
 
+> **Install from Chrome Web Store:** [ZeeML Smart Table, Grid & JSON-to-CSV Studio (`pdgelpgfjakiikgihmdbgngkhejlkibn`)](https://chromewebstore.google.com/detail/zeeml-smart-table-grid-js/pdgelpgfjakiikgihmdbgngkhejlkibn)
 > **Official Web Workbench:** [https://zeeml.com/json-to-csv](https://zeeml.com/json-to-csv)
 > **Companion Quantitative Calculators:** [Percentage & Margin Calculator (`zeeml.com/percentage-calculator`)](https://zeeml.com/percentage-calculator) • [Lexical Density Counter (`zeeml.com/word-counter`)](https://zeeml.com/word-counter) • [All ZeeML Utilities (`zeeml.com/tools`)](https://zeeml.com/tools)
 
